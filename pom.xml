@@ -61,7 +61,15 @@
     <module>hipparchus-filtering</module>
     <module>hipparchus-coverage</module>
   </modules>
-
+  <repositories>
+      <repository>
+          <id>central</id>
+          <url>https://repo.maven.apache.org/maven2</url>
+          <snapshots>
+              <enabled>false</enabled>
+          </snapshots>
+      </repository>
+  </repositories>
   <build>
     <plugins>
       <plugin>
