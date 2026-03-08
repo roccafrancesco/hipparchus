@@ -1,0 +1,23 @@
+name: Hipparchus Optim Test
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Test Optimization Module
+        # -pl (project list) seleziona il modulo
+        # -am (also make) compila le dipendenze necessarie per quel modulo
+        run: mvn -B test -pl hipparchus-optim -am
