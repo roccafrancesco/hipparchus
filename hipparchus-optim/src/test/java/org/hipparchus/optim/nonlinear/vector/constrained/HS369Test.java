@@ -151,10 +151,7 @@ public class HS369Test {
         double[] start = {5000, 5000, 5000, 200, 350, 150, 225, 425};
         InitialGuess guess = new InitialGuess(start);
 
-        SQPOptimizerS2 optimizer = new SQPOptimizerS2();
-        if (Boolean.getBoolean("hipparchus.debug.sqp")) {
-          optimizer.setDebugPrinter(System.out::println);
-          }
+        SQPOptimizerS2 optimizer = HSProblemTestUtils.newOptimizer();
 
         double val = 7049.2480;
         LagrangeSolution sol = optimizer.optimize(
@@ -164,7 +161,7 @@ public class HS369Test {
             new HS369Ineq()
         );
 
-        assertEquals(val, sol.getValue(), 1e-2); // tolleranza rilassata per robustezza
+        HSProblemTestUtils.assertExpectedObjective(val, sol); // tolleranza rilassata per robustezza
     }
     
     @Test
@@ -180,7 +177,7 @@ public class HS369Test {
         double[] lb = {100.0, 1000.0, 1000.0, 10.0, 10.0, 10.0, 10.0, 10.0};
          double[] ub = {10000.0, 10000.0, 10000.0, 1000.0, 1000.0, 1000.0, 1000.0, 1000.0};
         SimpleBounds bounds=new SimpleBounds(lb,ub);
-        SQPOptimizerS2 optimizer = new SQPOptimizerS2();
+        SQPOptimizerS2 optimizer = HSProblemTestUtils.newOptimizer();
         optimizer.setDebugPrinter(s -> {});
 
         double val = 7049.2480;
@@ -191,6 +188,6 @@ public class HS369Test {
             new HS369IneqNoBounds(),bounds
         );
 
-        assertEquals(val, sol.getValue(), 1e-2);  
+        HSProblemTestUtils.assertExpectedObjective(val, sol);  
     }
 }

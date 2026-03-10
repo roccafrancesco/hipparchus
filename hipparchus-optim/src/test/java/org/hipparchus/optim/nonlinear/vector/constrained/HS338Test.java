@@ -109,7 +109,7 @@ public class HS338Test {
 
 //    @Test
 //    public void testHS338() {
-//        SQPOptimizerS2 opt = new SQPOptimizerS2();
+//        SQPOptimizerS2 opt = HSProblemTestUtils.newOptimizer()
 //
 //        if (Boolean.getBoolean("hipparchus.debug.sqp")) {
 //            opt.setDebugPrinter(System.out::println);

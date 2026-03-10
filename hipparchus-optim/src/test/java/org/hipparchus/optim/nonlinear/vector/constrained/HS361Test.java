@@ -282,11 +282,7 @@ public class HS361Test {
 
     @Test
     public void testHS361Optimization() {
-        final SQPOptimizerS2 opt = new SQPOptimizerS2();
-
-        if (Boolean.getBoolean("hipparchus.debug.sqp")) {
-            opt.setDebugPrinter(System.out::println);
-        }
+        final SQPOptimizerS2 opt = HSProblemTestUtils.newOptimizer();
 
         // Bounds: traduzione diretta da LXL/LXU, XL, XU.
         final double[] lowerBounds = {

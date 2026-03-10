@@ -120,8 +120,7 @@ static final class HS277Eq extends EqualityConstraint {
         final RealVector b = c.copy(); // b_i = sum_j H_{ij}
         final double fEx = c.mapMultiply(1.0).dotProduct(new ArrayRealVector(n, 1.0)); // sum_i c_i
 
-        final SQPOptimizerS2 optimizer = new SQPOptimizerS2();
-        optimizer.setDebugPrinter(System.out::println);
+        final SQPOptimizerS2 optimizer = HSProblemTestUtils.newOptimizer();
         SQPOption sqpOption=new SQPOption();
         sqpOption.setGradientMode(GradientMode.FORWARD);
 

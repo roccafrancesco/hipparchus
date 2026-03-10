@@ -55,13 +55,10 @@ public class HS016Test {
         sqpOption.setMu(1.0e-4);
         sqpOption.setEps(10e-7);
         InitialGuess guess = new InitialGuess(new double[]{1.0});
-        SQPOptimizerS2 optimizer = new SQPOptimizerS2();
-        if (Boolean.getBoolean("hipparchus.debug.sqp")) {
-            optimizer.setDebugPrinter(System.out::println);
-        }
+        SQPOptimizerS2 optimizer = HSProblemTestUtils.newOptimizer();
         double val = (0.0);
         LagrangeSolution sol = optimizer.optimize(sqpOption,guess, new ObjectiveFunction(new HS016Obj()), new HS016Ineq());
-        assertEquals(val, sol.getValue(), 1e-6);
+        HSProblemTestUtils.assertExpectedObjective(val, sol);
     }
     
     @Test
@@ -74,12 +71,9 @@ public class HS016Test {
         InitialGuess guess = new InitialGuess(new double[]{1.0});
         SimpleBounds bounds=new SimpleBounds(new double[]{0.0},
                                              new double[]{Double.POSITIVE_INFINITY});
-        SQPOptimizerS2 optimizer = new SQPOptimizerS2();
-        if (Boolean.getBoolean("hipparchus.debug.sqp")) {
-            optimizer.setDebugPrinter(System.out::println);
-        }
+        SQPOptimizerS2 optimizer = HSProblemTestUtils.newOptimizer();
         double val = (0.0);
         LagrangeSolution sol = optimizer.optimize(sqpOption,guess, new ObjectiveFunction(new HS016Obj()), bounds);
-        assertEquals(val, sol.getValue(), 1e-6);
+        HSProblemTestUtils.assertExpectedObjective(val, sol);
     }
 }

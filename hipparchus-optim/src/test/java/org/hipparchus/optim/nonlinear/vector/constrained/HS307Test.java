@@ -82,8 +82,7 @@ public class HS307Test {
     }
 
     private LagrangeSolution solve() {
-        SQPOptimizerS2 opt = new SQPOptimizerS2();
-        opt.setDebugPrinter(System.out::println); // richiesto
+        SQPOptimizerS2 opt = HSProblemTestUtils.newOptimizer() // richiesto;
 
         final double[] x0 = {0.3, 0.4};     
         final double[] lo = {0.0, 0.0};     

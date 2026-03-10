@@ -156,8 +156,7 @@ static final class HS112Eq extends EqualityConstraint {
             up[i]    = SUP;     // unbounded above
         }
 
-        SQPOptimizerS2 opt = new SQPOptimizerS2();
-        opt.setDebugPrinter(System.out::println);
+        SQPOptimizerS2 opt = HSProblemTestUtils.newOptimizer();
 
         return opt.optimize(
             new InitialGuess(start),

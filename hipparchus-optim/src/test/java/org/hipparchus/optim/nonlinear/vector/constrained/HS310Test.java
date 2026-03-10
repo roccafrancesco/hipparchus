@@ -73,8 +73,7 @@ public class HS310Test {
     }
 
     private LagrangeSolution solve() {
-        final SQPOptimizerS2 opt = new SQPOptimizerS2();
-        opt.setDebugPrinter(System.out::println); // richiesto
+        final SQPOptimizerS2 opt = HSProblemTestUtils.newOptimizer() // richiesto;
          SQPOption sqpOption=new SQPOption();
          sqpOption.setGradientMode(GradientMode.EXTERNAL);
         // 

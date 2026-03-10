@@ -59,10 +59,7 @@ public class HS017Test {
     @Test
     public void testHS017() {
         InitialGuess guess = new InitialGuess(new double[]{-2, 1});
-        SQPOptimizerS2 optimizer = new SQPOptimizerS2();
-        if (Boolean.getBoolean("hipparchus.debug.sqp")) {
-            optimizer.setDebugPrinter(System.out::println);
-        }
+        SQPOptimizerS2 optimizer = HSProblemTestUtils.newOptimizer();
         SQPOption sqpOption=new SQPOption();
         sqpOption.setMaxLineSearchIteration(20);
         sqpOption.setB(0.5);
@@ -70,7 +67,7 @@ public class HS017Test {
         sqpOption.setEps(1e-11);
         double val = 1.0;
         LagrangeSolution sol = optimizer.optimize(sqpOption,guess, new ObjectiveFunction(new HS017Obj()), new HS017Ineq());
-        assertEquals(val, sol.getValue(), 1e-3);
+        HSProblemTestUtils.assertExpectedObjective(val, sol);
     }
     
     @Test
@@ -78,10 +75,7 @@ public class HS017Test {
         InitialGuess guess = new InitialGuess(new double[]{-2, 1});
         SimpleBounds bounds=new SimpleBounds(new double[]{-2.0,Double.NEGATIVE_INFINITY},
                                              new double[]{0.5,1.0});
-        SQPOptimizerS2 optimizer = new SQPOptimizerS2();
-        if (Boolean.getBoolean("hipparchus.debug.sqp")) {
-            optimizer.setDebugPrinter(System.out::println);
-        }
+        SQPOptimizerS2 optimizer = HSProblemTestUtils.newOptimizer();
         SQPOption sqpOption=new SQPOption();
         sqpOption.setMaxLineSearchIteration(20);
         sqpOption.setB(0.5);
@@ -89,6 +83,6 @@ public class HS017Test {
         sqpOption.setEps(1e-11);
         double val = 1.0;
         LagrangeSolution sol = optimizer.optimize(sqpOption,guess, new ObjectiveFunction(new HS017Obj()), new HS017IneqNoBounds(),bounds);
-        assertEquals(val, sol.getValue(), 1e-3);
+        HSProblemTestUtils.assertExpectedObjective(val, sol);
     }
 }

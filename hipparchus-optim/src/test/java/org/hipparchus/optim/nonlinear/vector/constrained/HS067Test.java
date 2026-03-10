@@ -70,23 +70,21 @@ public class HS067Test {
     @Test
     public void testHS067() {
         InitialGuess guess = new InitialGuess(new double[]{1745, 12000, 110,0,0,0,0,0,0,0});
-        SQPOptimizerS2 optimizer = new SQPOptimizerS2();
-        optimizer.setDebugPrinter(System.out::println);
+        SQPOptimizerS2 optimizer = HSProblemTestUtils.newOptimizer();
        
         double val = -1162.02698006;
         LagrangeSolution sol = optimizer.optimize(guess, new ObjectiveFunction(new HS067Obj()), new HS067Eq(), new HS067Ineq());
-        assertEquals(val, sol.getValue(), 1e-4);
+        HSProblemTestUtils.assertExpectedObjective(val, sol);
     }
     
     @Test
     public void testHS067Bounds() {
         
         final SimpleBounds bounds = new SimpleBounds(LB, UB);
-        SQPOptimizerS2 optimizer = new SQPOptimizerS2();
-        optimizer.setDebugPrinter(System.out::println);
+        SQPOptimizerS2 optimizer = HSProblemTestUtils.newOptimizer();
        
         double val = -1162.02698006;
         LagrangeSolution sol = optimizer.optimize( new ObjectiveFunction(new HS067Obj()), new HS067Eq(), bounds);
-        assertEquals(val, sol.getValue(), 1e-4);
+        HSProblemTestUtils.assertExpectedObjective(val, sol);
     }
 }

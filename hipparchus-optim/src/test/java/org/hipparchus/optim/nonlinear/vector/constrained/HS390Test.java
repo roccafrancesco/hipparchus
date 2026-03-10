@@ -390,10 +390,7 @@ public class HS390Test {
 
         final SimpleBounds bounds = new SimpleBounds(lower, upper);
 
-        final SQPOptimizerS2 opt = new SQPOptimizerS2();
-        if (Boolean.getBoolean("hipparchus.debug.sqp")) {
-            opt.setDebugPrinter(System.out::println);
-        }
+        final SQPOptimizerS2 opt = HSProblemTestUtils.newOptimizer();
 
         final LagrangeSolution sol = opt.optimize(
                 new InitialGuess(x0),

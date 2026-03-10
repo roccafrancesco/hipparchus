@@ -69,12 +69,12 @@ public class HS299Test {
         }
 
         InitialGuess guess = new InitialGuess(start);
-        SQPOptimizerS2 optimizer = new SQPOptimizerS2();
+        SQPOptimizerS2 optimizer = HSProblemTestUtils.newOptimizer();
         optimizer.setDebugPrinter(s -> {});
 
         double val = 0.0;
         LagrangeSolution sol = optimizer.optimize(sqpOption, guess, new ObjectiveFunction(new HS299Obj()));
 
-        assertEquals(val, sol.getValue(), 1e-2);
+        HSProblemTestUtils.assertExpectedObjective(val, sol);
     }
 }

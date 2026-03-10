@@ -153,8 +153,7 @@ public class HS099Test {
 
     @Test
     public void testHS099() {
-        final SQPOptimizerS2 optimizer = new SQPOptimizerS2();
-        optimizer.setDebugPrinter(System.out::println);
+        final SQPOptimizerS2 optimizer = HSProblemTestUtils.newOptimizer();
 
         final LagrangeSolution sol = optimizer.optimize(
                 guess(),
@@ -164,6 +163,6 @@ public class HS099Test {
         );
 
         // Fortran FEX: -0.831079891516D+09
-        assertEquals(-0.831079891516e9, sol.getValue(), 1e5); // tolerant: large magnitude
+        HSProblemTestUtils.assertExpectedObjective(-0.831079891516e9, sol); // tolerant: large magnitude
     }
 }

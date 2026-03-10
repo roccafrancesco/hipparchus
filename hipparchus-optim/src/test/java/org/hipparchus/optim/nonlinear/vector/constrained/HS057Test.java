@@ -126,8 +126,7 @@ public class HS057Test {
                 new double[] { Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY }
         );
 
-        SQPOptimizerS2 optimizer = new SQPOptimizerS2();
-        optimizer.setDebugPrinter(System.out::println);
+        SQPOptimizerS2 optimizer = HSProblemTestUtils.newOptimizer();
         SQPOption sqpOpt=new SQPOption();
         sqpOpt.setGradientMode(GradientMode.EXTERNAL);
         sqpOpt.setEps(1.0e-11);
@@ -141,7 +140,7 @@ public class HS057Test {
                 bounds
         );
 
-        assertEquals(expected, sol.getValue(), 1e-8);
+        HSProblemTestUtils.assertExpectedObjective(expected, sol);
     }
 
     /**

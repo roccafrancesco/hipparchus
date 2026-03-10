@@ -145,10 +145,7 @@ public class HS235Test {
         // Initial guess (MODE=1): X(1)=-2, X(2)=3, X(3)=1
         double[] x0 = new double[]{-2.0, 3.0, 1.0};
 
-        SQPOptimizerS2 opt = new SQPOptimizerS2();
-        if (Boolean.getBoolean("hipparchus.debug.sqp")) {
-            opt.setDebugPrinter(System.out::println);
-        }
+        SQPOptimizerS2 opt = HSProblemTestUtils.newOptimizer();
 
         LagrangeSolution sol = opt.optimize(
                 new InitialGuess(x0),

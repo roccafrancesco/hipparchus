@@ -205,10 +205,7 @@ public class HS392Test{
             ub[i] = Double.POSITIVE_INFINITY;
         }
         
-        final SQPOptimizerS2 opt = new SQPOptimizerS2();
-         if (Boolean.getBoolean("hipparchus.debug.sqp")) {
-          opt.setDebugPrinter(System.out::println);
-          }
+        final SQPOptimizerS2 opt = HSProblemTestUtils.newOptimizer();
 
         final LagrangeSolution sol = opt.optimize(
             new InitialGuess(x0),
@@ -219,6 +216,6 @@ public class HS392Test{
         );
 
         
-        assertEquals(-1.6960671e6, sol.getValue(), 1e3);
+        HSProblemTestUtils.assertExpectedObjective(-1.6960671e6, sol);
     }
 }

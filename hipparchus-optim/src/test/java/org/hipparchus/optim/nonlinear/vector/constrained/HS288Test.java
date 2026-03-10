@@ -119,8 +119,7 @@ public class HS288Test {
     }
 
     private static LagrangeSolution solve(double[] x0) {
-        SQPOptimizerS2 opt = new SQPOptimizerS2();
-        opt.setDebugPrinter(System.out::println); // obbligatorio per il tracing
+        SQPOptimizerS2 opt = HSProblemTestUtils.newOptimizer() // obbligatorio per il tracing;
         SQPOption sqpOption=new SQPOption();
         sqpOption.setGradientMode(GradientMode.EXTERNAL);
         return opt.optimize(

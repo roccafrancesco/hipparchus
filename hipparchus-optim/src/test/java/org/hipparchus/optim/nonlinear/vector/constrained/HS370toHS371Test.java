@@ -135,10 +135,7 @@ public class HS370toHS371Test {
         // Initial guess X(I) = 0
         double[] x0 = new double[n];
 
-        SQPOptimizerS2 opt = new SQPOptimizerS2();
-        if (Boolean.getBoolean("hipparchus.debug.sqp")) {
-            opt.setDebugPrinter(System.out::println);
-        }
+        SQPOptimizerS2 opt = HSProblemTestUtils.newOptimizer();
 
         LagrangeSolution sol = opt.optimize(
             new InitialGuess(x0),
@@ -165,7 +162,7 @@ public class HS370toHS371Test {
 //        // Initial guess X(I) = 0
 //        double[] x0 = new double[n];
 //
-//        SQPOptimizerS2 opt = new SQPOptimizerS2();
+//        SQPOptimizerS2 opt = HSProblemTestUtils.newOptimizer()
 //        if (Boolean.getBoolean("hipparchus.debug.sqp")) {
 //            opt.setDebugPrinter(System.out::println);
 //        }

@@ -80,8 +80,7 @@ public class HS202Test {
         final double[] up = { 20.0, 5.0 };
         SQPOption sqpOption=new SQPOption();
         sqpOption.setGradientMode(GradientMode.FORWARD);
-        final SQPOptimizerS2 optimizer = new SQPOptimizerS2();
-        optimizer.setDebugPrinter(System.out::println);
+        final SQPOptimizerS2 optimizer = HSProblemTestUtils.newOptimizer();
 
         return optimizer.optimize(
             new InitialGuess(start),

@@ -168,10 +168,7 @@ public class HS395TestWithSQPProblemInterface {
         }
 
         InitialGuess guess = new InitialGuess(start);
-        SQPOptimizerS2 optimizer = new SQPOptimizerS2();
-        if (Boolean.getBoolean("hipparchus.debug.sqp")) {
-            optimizer.setDebugPrinter(System.out::println);
-        }
+        SQPOptimizerS2 optimizer = HSProblemTestUtils.newOptimizer();
 
         // Expected optimal objective value.
         double expected = 1.9166668;
@@ -184,6 +181,6 @@ public class HS395TestWithSQPProblemInterface {
                 
         );
 
-        assertEquals(expected, sol.getValue(), 1e-6);
+        HSProblemTestUtils.assertExpectedObjective(expected, sol);
     }
 }

@@ -59,11 +59,11 @@ public class HS058Test {
         sqpOption.setMu(1.0e-4);
         sqpOption.setEps(10e-10);
         InitialGuess guess = new InitialGuess(new double[]{-2.0, 1.0});
-        SQPOptimizerS2 optimizer = new SQPOptimizerS2();
+        SQPOptimizerS2 optimizer = HSProblemTestUtils.newOptimizer();
         optimizer.setDebugPrinter(s -> {});
         double val = 3.19033354957;
         LagrangeSolution sol = optimizer.optimize(sqpOption,guess, new ObjectiveFunction(new HS058Obj()), new HS058Ineq());
-        assertEquals(val, sol.getValue(), 1e-1);
+        HSProblemTestUtils.assertExpectedObjective(val, sol);
         
     }
 }

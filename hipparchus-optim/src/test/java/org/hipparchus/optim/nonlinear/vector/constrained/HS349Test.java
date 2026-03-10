@@ -297,12 +297,9 @@ public class HS349Test {
     public void testHS349() {
         // Poiché non sono disponibili derivate analitiche, è necessario utilizzare la stima numerica.
         // SQPOptimizerS2 è un segnaposto per un ottimizzatore di programmazione quadratica sequenziale/numerica.
-        SQPOptimizerS2 opt = new SQPOptimizerS2();
+        SQPOptimizerS2 opt = HSProblemTestUtils.newOptimizer();
         
         // RECUPERO: Aggiunta la stampa di debug condizionale
-        if (Boolean.getBoolean("hipparchus.debug.sqp")) {
-            opt.setDebugPrinter(System.out::println);
-        }
         
         // Box constraints: 1000 <= X1 <= 8000, 100 <= X2 <= 500, X3 is unconstrained
         SimpleBounds bounds = new SimpleBounds(

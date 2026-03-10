@@ -351,10 +351,7 @@ public class HS376BISTest {
  }
 
  private LagrangeSolution solve() {
-     SQPOptimizerS2 opt = new SQPOptimizerS2();
-     if (Boolean.getBoolean("hipparchus.debug.sqp")) {
-         opt.setDebugPrinter(System.out::println);
-     }
+     SQPOptimizerS2 opt = HSProblemTestUtils.newOptimizer();
 
      // Initial guess from Fortran MODE=1:
      double[] x0 = {

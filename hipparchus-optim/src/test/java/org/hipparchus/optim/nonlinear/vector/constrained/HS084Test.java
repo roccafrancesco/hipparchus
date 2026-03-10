@@ -99,7 +99,7 @@ public class HS084Test {
 //        final InitialGuess guess = new InitialGuess(X0);
 //        final SimpleBounds bounds = new SimpleBounds(LB, UB);
 //
-//        final SQPOptimizerS2 optimizer = new SQPOptimizerS2();
+//        final SQPOptimizerS2 optimizer = HSProblemTestUtils.newOptimizer()
 //        optimizer.setDebugPrinter(System.out::println);
 //
 //        final LagrangeSolution sol = optimizer.optimize(
@@ -110,6 +110,6 @@ public class HS084Test {
 //        );
 //
 //        // best known objective = -5280335.133
-//        assertEquals(-5280335.133, sol.getValue(), 1e-3);
+//        HSProblemTestUtils.assertExpectedObjective(-5280335.133, sol);
 //    }
 }

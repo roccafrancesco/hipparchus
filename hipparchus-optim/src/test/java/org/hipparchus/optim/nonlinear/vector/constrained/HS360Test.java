@@ -182,12 +182,9 @@ public class HS360Test {
     @Test
     public void testHS360Optimization() {
         // Initialize the SQP optimizer
-        final SQPOptimizerS2 opt = new SQPOptimizerS2();
+        final SQPOptimizerS2 opt = HSProblemTestUtils.newOptimizer();
         
         // Enable debug output if the system property is set.
-        if (Boolean.getBoolean("hipparchus.debug.sqp")) {
-             opt.setDebugPrinter(System.out::println);
-        }
         
         // Define Box Constraints (Fortran MODE 1)
         final double[] lowerBounds = { 0.0, 1.2, 20.0, 9.0, 6.5 };
