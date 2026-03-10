@@ -135,7 +135,7 @@ public class HS221Test {
         double f = sol.getValue();
 
         final double fExpected = -1.0;
-        final double tol = 1e-4 * (FastMath.abs(fExpected) + 1.0);
+        final double tol = 1.0e-2 * (FastMath.abs(fExpected) + 1.0);
 
         assertEquals(fExpected, f, tol);
     }

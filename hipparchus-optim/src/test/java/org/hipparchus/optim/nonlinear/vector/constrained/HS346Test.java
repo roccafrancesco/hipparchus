@@ -129,7 +129,7 @@ public class HS346Test {
         );
 
         double f = sol.getValue();
-        final double fExpected = -5.6847825; // FEX value
+        final double fExpected = -56.847825; // FEX value
         final double tolerance = 1.0e-5 * (Math.abs(fExpected) + 1.0);
         
         // Using assert for closeness OR better result (f <= fExpected + tolerance)

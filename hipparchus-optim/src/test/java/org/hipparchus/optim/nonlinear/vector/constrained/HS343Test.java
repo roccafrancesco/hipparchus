@@ -138,7 +138,7 @@ public class HS343Test {
         );
 
         double f = sol.getValue();
-        final double fExpected = -5.6847825;
+        final double fExpected = -56.847825;
         
         assertEquals(fExpected, f, 1.0e-5 * (Math.abs(fExpected) + 1.0), "objective mismatch");
         

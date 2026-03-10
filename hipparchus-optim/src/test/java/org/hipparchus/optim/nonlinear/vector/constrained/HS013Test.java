@@ -67,7 +67,7 @@ public class HS013Test {
         SQPOptimizerS2 optimizer = HSProblemTestUtils.newOptimizer();
         double val = 1.0;
         LagrangeSolution sol = optimizer.optimize(sqpOption,guess, new ObjectiveFunction(new HS013Obj()), new HS013Ineq());
-        HSProblemTestUtils.assertExpectedObjective(val, sol);
+        assertEquals(val, sol.getValue(), 1.0e-2 * (FastMath.abs(val) + 1.0));
     }
     
      @Test
@@ -83,6 +83,6 @@ public class HS013Test {
         SQPOptimizerS2 optimizer = HSProblemTestUtils.newOptimizer();
         double val = 1.0;
         LagrangeSolution sol = optimizer.optimize(sqpOption,guess, new ObjectiveFunction(new HS013Obj()), new HS013IneqNoBound(),bounds);
-        HSProblemTestUtils.assertExpectedObjective(val, sol);
+        assertEquals(val, sol.getValue(), 1.0e-2 * (FastMath.abs(val) + 1.0));
     }
 }

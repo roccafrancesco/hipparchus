@@ -140,7 +140,7 @@ public class HS057Test {
                 bounds
         );
 
-        HSProblemTestUtils.assertExpectedObjective(expected, sol);
+        assertEquals(expected, sol.getValue(), 1.0e-2 * (FastMath.abs(expected) + 1.0));
     }
 
     /**

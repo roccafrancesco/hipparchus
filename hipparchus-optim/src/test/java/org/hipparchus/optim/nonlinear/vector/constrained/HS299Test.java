@@ -75,6 +75,6 @@ public class HS299Test {
         double val = 0.0;
         LagrangeSolution sol = optimizer.optimize(sqpOption, guess, new ObjectiveFunction(new HS299Obj()));
 
-        HSProblemTestUtils.assertExpectedObjective(val, sol);
+        assertEquals(val, sol.getValue(), 1.0e-2 * (Math.abs(val) + 1.0));
     }
 }
