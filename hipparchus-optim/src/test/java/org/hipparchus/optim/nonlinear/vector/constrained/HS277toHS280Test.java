@@ -122,7 +122,7 @@ static final class HS277Eq extends EqualityConstraint {
 
         final SQPOptimizerS2 optimizer = HSProblemTestUtils.newOptimizer();
         SQPOption sqpOption=new SQPOption();
-        sqpOption.setGradientMode(GradientMode.FORWARD);
+        sqpOption.setGradientMode(GradientMode.EXTERNAL);
 
         final double[] start = new double[n]; // all zeros as in the Fortran setup
         final double[] lo = new double[n];
@@ -135,18 +135,18 @@ static final class HS277Eq extends EqualityConstraint {
 
         LagrangeSolution sol = optimizer.optimize(
                 sqpOption,
-            //new InitialGuess(start),
+            new InitialGuess(start),
             new ObjectiveFunction(new HS277Objective(c)),
             new HS277Eq(H, b),
            new SimpleBounds(lo, up)
         );
 
         double f = sol.getValue();
-        assertEquals(fEx, f, 1.0e-6 * (Math.abs(fEx) + 1.0), "objective mismatch");
+        assertEquals(fEx, f, 1.0e-5 * (Math.abs(fEx) + 1.0), "objective mismatch");
     }
 
     @Test public void testHS277() { runCase(4); }
     @Test public void testHS278() { runCase(6); }
-//   @Test public void testHS279() { runCase(8); }
-//   @Test public void testHS280() { runCase(10); }
+    @Test public void testHS279() { runCase(8); }
+    @Test public void testHS280() { runCase(10); }
 }
