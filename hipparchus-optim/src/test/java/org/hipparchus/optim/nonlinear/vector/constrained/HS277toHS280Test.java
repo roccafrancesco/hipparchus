@@ -124,11 +124,14 @@ static final class HS277Eq extends EqualityConstraint {
         SQPOption sqpOption=new SQPOption();
         sqpOption.setGradientMode(GradientMode.EXTERNAL);
 
-        final double[] start = new double[n]; // all zeros as in the Fortran setup
+        final double[] start = new double[n];
         final double[] lo = new double[n];
         final double[] up = new double[n];
         for (int i = 0; i < n; i++) {
-//            start[i]=0.1;
+            // For n=8,10 (HS279/280) starting exactly on the lower bound (x=0)
+            // can trigger a zero projected fallback direction on ill-conditioned
+            // Hilbert systems. Use a small strictly-feasible positive start.
+            start[i] = 0.1;
             lo[i] = 0.0;
             up[i] = Double.POSITIVE_INFINITY;
         }
