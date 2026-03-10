@@ -12,7 +12,6 @@ package org.hipparchus.optim.nonlinear.vector.constrained;
 
 import org.hipparchus.linear.*;
 import org.hipparchus.optim.InitialGuess;
-import org.hipparchus.optim.SimpleBounds;
 import org.hipparchus.optim.nonlinear.scalar.ObjectiveFunction;
 import org.junit.jupiter.api.Test;
 
@@ -125,23 +124,16 @@ static final class HS277Eq extends EqualityConstraint {
         sqpOption.setGradientMode(GradientMode.EXTERNAL);
 
         final double[] start = new double[n];
-        final double[] lo = new double[n];
-        final double[] up = new double[n];
         for (int i = 0; i < n; i++) {
-            // For n=8,10 (HS279/280) starting exactly on the lower bound (x=0)
-            // can trigger a zero projected fallback direction on ill-conditioned
-            // Hilbert systems. Use a small strictly-feasible positive start.
+            // Keep the start strictly interior for numerical robustness.
             start[i] = 0.1;
-            lo[i] = 0.0;
-            up[i] = Double.POSITIVE_INFINITY;
         }
 
         LagrangeSolution sol = optimizer.optimize(
                 sqpOption,
             new InitialGuess(start),
             new ObjectiveFunction(new HS277Objective(c)),
-            new HS277Eq(H, b),
-           new SimpleBounds(lo, up)
+            new HS277Eq(H, b)
         );
 
         double f = sol.getValue();
