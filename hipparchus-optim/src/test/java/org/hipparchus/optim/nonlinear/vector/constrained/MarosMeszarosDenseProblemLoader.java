@@ -439,6 +439,12 @@ class MarosMeszarosDenseProblemLoader {
                 final String nextSection = parseSectionHeader(rawLine, trimmed);
                 if (nextSection != null) {
                     section = nextSection;
+                    if ("OBJNAME".equals(section)) {
+                        final String[] headerTokens = parseDataTokens(rawLine);
+                        if (headerTokens.length > 1) {
+                            layout.objectiveRow = headerTokens[1];
+                        }
+                    }
                     if ("ENDATA".equals(section)) {
                         break;
                     }
@@ -455,6 +461,8 @@ class MarosMeszarosDenseProblemLoader {
                             layout.objectiveRow = name;
                         }
                     }
+                } else if ("OBJNAME".equals(section)) {
+                    parseObjectiveName(layout, tokens);
                 } else if ("COLUMNS".equals(section)) {
                     if (tokens.length > 0 && !(tokens.length >= 2 && "'MARKER'".equalsIgnoreCase(tokens[1]))) {
                         layout.addVariable(tokens[0]);
@@ -654,6 +662,19 @@ class MarosMeszarosDenseProblemLoader {
             lb[j] = Double.NEGATIVE_INFINITY;
         } else if ("PL".equals(type)) {
             ub[j] = Double.POSITIVE_INFINITY;
+        } else if ("BV".equals(type)) {
+            lb[j] = 0.0;
+            ub[j] = 1.0;
+        } else if ("LI".equals(type)) {
+            lb[j] = value;
+        } else if ("UI".equals(type)) {
+            ub[j] = value;
+        }
+    }
+
+    private void parseObjectiveName(final ProblemLayout layout, final String[] tokens) {
+        if (tokens.length > 0) {
+            layout.objectiveRow = tokens[0];
         }
     }
 
